@@ -193,6 +193,25 @@
             transform: translateX(10px);
         }
 
+        /* --- MOBILE MENU ADJUSTMENT --- */
+@media (max-width: 768px) {
+    nav {
+        /* 1. Reduce side padding to push items to the edges */
+        padding: 20px 10px !important; 
+    }
+
+    .logo {
+        /* 2. Slightly shrink the logo text so it doesn't fight for space */
+        font-size: 1.2rem !important; 
+    }
+
+    .nav-links a {
+        /* 3. If your links are visible, reduce their spacing */
+        margin-left: 10px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
         /* --- HERO SECTION --- */
       header.hero {
     height: 100vh;
