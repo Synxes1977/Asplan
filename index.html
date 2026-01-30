@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPLAN | Precision Architecture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --color-bg: #0b0b0b;       
+            --color-text: #f5f5f5;     
+            --color-accent: #C5A059;   
+            --color-red: #E60000;      
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Cormorant Garamond', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- UTILITIES --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid rgba(255,255,255,0.3);
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-top: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 2000; 
+            
+            /* Header Bar Transparency */
+            background-color: rgba(11, 11, 11, 0.7); /* Slightly more transparent header too */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        /* LEFT: MENU TRIGGER */
+        .nav-left { justify-self: start; }
+        
+        .menu-btn {
+            background: none;
+            border: none;
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            z-index: 2001; 
+        }
+
+        .hamburger-icon { width: 20px; height: 12px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+        .hamburger-line { width: 100%; height: 2px; background-color: #fff; transition: 0.3s; }
+        
+        .menu-btn:hover .hamburger-line { background-color: var(--color-accent); }
+        .menu-btn:hover { color: var(--color-accent); }
+
+        /* CENTER: LOGO */
+        .logo {
+            justify-self: center;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            white-space: nowrap; 
+        }
+        .logo-as { color: var(--color-red); }
+        .logo-plan { color: #ffffff; }
+
+        /* RIGHT: LINKS */
+        .nav-links { justify-self: end; display: flex; gap: 40px; }
+        .nav-links li a {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff; 
+            opacity: 0.8;
+        }
+        .nav-links li a:hover { opacity: 1; color: var(--color-accent); }
+
+        /* --- FULL SCREEN OVERLAY MENU (HIGH TRANSPARENCY) --- */
+        .overlay-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            
+            /* UPDATED: Much more transparent (0.6 = 60%) */
+            background-color: rgba(0, 0, 0, 0.6); 
+            
+            /* Keep strong blur so text is readable over the image */
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.5s ease-in-out;
+            padding-top: 80px; 
+        }
+
+        .overlay-menu.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
+
+        .menu-content {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .menu-column h4 {
+            font-family: var(--font-head);
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.2); /* Slightly brighter line for contrast */
+            padding-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8); /* Shadow for readability */
+        }
+
+        .menu-column ul li {
+            margin-bottom: 15px;
+        }
+
+        .menu-column ul li a {
+            font-family: var(--font-body);
+            font-size: 1.5rem; 
+            color: #fff;
+            font-weight: 300;
+            transition: 0.3s;
+            display: block;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow for readability */
+        }
+
+        .menu-column ul li a:hover {
+            color: var(--color-accent);
+            transform: translateX(10px);
+        }
+
+        /* --- HERO SECTION --- */
+      header.hero {
+    height: 100vh;
+    width: 100%;
+    /* This points to your new local file */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('luxury-kitchen-extension.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+        .hero h1 {
+            font-family: var(--font-head);
+            font-weight: 300;
+            font-size: 4rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .intro { padding: 120px 0; text-align: center; }
+        .section-tag { font-family: var(--font-head); color: var(--color-accent); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .intro h2 { font-family: var(--font-body); font-size: 2.5rem; max-width: 700px; margin: 0 auto 40px auto; font-weight: 400; line-height: 1.4; }
+
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 5px; }
+        .project-card { position: relative; height: 600px; overflow: hidden; cursor: pointer; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); filter: grayscale(30%); }
+        .project-card:hover img { transform: scale(1.05); filter: grayscale(0%); }
+        .project-info { position: absolute; bottom: 40px; left: 40px; z-index: 2; }
+        .project-title { font-family: var(--font-head); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; }
+        .project-loc { font-size: 0.9rem; font-style: italic; color: var(--color-accent); }
+
+        .services { background: #1a1a1a; padding: 120px 0; display: flex; align-items: center; }
+        .service-content { padding: 0 10%; }
+        .services h3 { font-family: var(--font-head); font-size: 2rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
+        .services p { max-width: 600px; font-size: 1.1rem; color: #ccc; margin-bottom: 30px; }
+
+        /* --- FOOTER STYLING --- */
+        footer { background: #000; padding: 80px 0; text-align: center; border-top: 1px solid #222; }
+        .footer-logo { font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 5px; margin-bottom: 40px; display: block; }
+        .footer-links a { margin: 0 15px; font-family: var(--font-head); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #666; }
+        .footer-links a:hover { color: #fff; }
+
+        .footer-address { margin: 50px 0; color: #888; font-family: var(--font-body); font-size: 1rem; line-height: 1.8; font-weight: 300; }
+        .footer-address strong { color: #ccc; font-weight: 400; }
+
+        .accreditation-container { margin-top: 40px; display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .accred-btn { display: flex; align-items: center; justify-content: center; opacity: 0.9; transition: all 0.3s; }
+        .accred-btn:hover { opacity: 1; transform: translateY(-2px); }
+        .rics-wrapper { background-color: #ffffff; padding: 10px 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+        .rics-img { height: 50px; width: auto; display: block; object-fit: contain; }
+        .cabe-img { height: 60px; width: auto; filter: brightness(0) invert(1); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .logo { font-size: 1.2rem; }
+            .container { padding: 0 20px; }
+            .menu-content { grid-template-columns: 1fr; text-align: center; }
+            .menu-column ul li a { font-size: 1.2rem; }
+        }
+        /* --- REVIEWS SECTION STYLES --- */
+.reviews-section {
+    padding: 80px 50px;
+    background-color: #0b0b0b; /* Matches site background */
+    text-align: center;
+}
+
+.reviews-header {
+    margin-bottom: 60px;
+}
+
+.reviews-header h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.gold-text { color: #C5A059; }
+
+/* The "Rated on Google" Button */
+.google-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #ccc;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid #333;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.google-badge:hover {
+    border-color: #C5A059;
+    color: #fff;
+}
+
+/* The Grid */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual Cards */
+.review-card {
+    background: #111; /* Slightly lighter than background */
+    padding: 40px;
+    text-align: left;
+    border: 1px solid #222;
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    border-color: #333;
+}
+
+.stars {
+    color: #C5A059; /* Gold Stars */
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ddd;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.reviewer-meta {
+    border-top: 1px solid #222;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reviewer-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.review-source {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    text-transform: uppercase;
+}
+
+/* Mobile Tweak */
+@media(max-width: 768px) {
+    .reviews-section { padding: 60px 20px; }
+    .reviews-header h2 { font-size: 1.8rem; }
+}
+    </style>
+</head>
+<body>
+
+    <div class="overlay-menu" id="overlayMenu">
+        <div class="menu-content">
+            
+            <div class="menu-column">
+                <h4>Portfolio</h4>
+                <ul>
+                    
+                    <li><a href="Residential.html">Residential</a></li>
+                    <li><a href="commercial.html">Commercial</a></li>
+                    <li><a href="Heritage.html">Heritage & Conservation</a></li>
+                    <li><a href="Past.html">Past Projects</a></li>
+                </ul>
+            </div>
+
+            <div class="menu-column">
+                <h4>The Studio</h4>
+                <ul>
+                    <li><a href="About.html">About Us</a></li>
+                    <li><a href="team.html">Meet the Team</a></li>
+                    <li><a href="awards.html">Awards & Press</a></li>
+                    <li><a href="Sustainability.html">Sustainability</a></li>
+                </ul>
+            </div>
+
+            <div class="menu-column">
+                <h4>Get in Touch</h4>
+                <ul>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="mailto:Info@asplan.co.uk">Info@asplan.co.uk</a></li>
+                    <li><a href="Tel:07968585858">Tel: 07968 585858</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-left">
+            <button class="menu-btn" id="menuToggle">
+                <div class="hamburger-icon" id="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+                <span id="menuText">Menu</span>
+            </button>
+        </div>
+
+        <div class="logo">
+            <span class="logo-as">As</span><span class="logo-plan">plan</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Vision. Approved.</h1>
+        <p>Architectural precision for the modern environment.</p>
+        <a href="#projects" class="btn">Explore Portfolio</a>
+    </header>
+
+    <section class="intro container" id="studio">
+        <span class="section-tag">The Philosophy</span>
+        <h2>"We don't just design buildings. We navigate the complex landscape of planning to bring the exceptional into reality."</h2>
+    </section>
+
+    <section class="portfolio-grid" id="projects">
+        <a href="Acer-House.html" style="text-decoration: none; color: inherit;">
+            <div class="project-card">
+                <img src="house-acer.webp" alt="Luxury modern thatch">
+                <div class="project-info">
+                    <div class="project-title">thatched country meets modern </div>
+                    <div class="project-loc">Christchurch</div>
+                </div>
+            </div>
+        </a>
+        <a href="branksea-new.html" style="text-decoration: none; color: inherit;">
+            <div class="project-card">
+                <img src="branksea-new-1.webp" alt="Modern Architecture">
+                <div class="project-info">
+                    <div class="project-title">Waterfront-Residence</div>
+                    <div class="project-loc">Hamworthy</div>
+                </div>
+            </div>
+        </a>
+        <div class="project-card">
+            <img src="apeal-1.webp" alt="Interior Detail">
+            <div class="project-info">
+                <div class="project-title">Overturned on apeal</div>
+                <div class="project-loc">Christchurch</div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="services" id="planning">
+        <div class="container service-content">
+            <span class="section-tag">Planning Expertise</span>
+            <h3>Mastering the "Dark Art"</h3>
+            <p>Navigating local council regulations requires more than just drawings; it requires strategy. We boast a 98% approval rating on difficult sites, turning regulatory constraints into architectural opportunities.</p>
+            <a href="contact.html" class="btn">Consult with us</a>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+    <div class="reviews-header">
+        <h2>Client <span class="gold-text">Perspectives</span></h2>
+        
+        <a href="https://www.google.com/maps/place/Asplan+Associates+Ltd/@50.7368216,-2.0886892,17z/data=!3m1!4b1!4m6!3m5!1s0x4873a1529134a101:0x777084bed4ed46ca!8m2!3d50.7368216!4d-2.0861143!16s%2Fg%2F1q6clbrbd?entry=ttu&g_ep=EgoyMDI2MDEyNy4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D" target="_blank" class="google-badge">
+            <svg class="g-logo" viewBox="0 0 24 24" width="18" height="18">
+                <path fill="#fff" d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.52-.244-2.189h-11.276z"/>
+            </svg>
+            Rated 5.0 on Google
+        </a>
+    </div>
+
+    <div class="reviews-grid">
+        
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"Asplan Associates provided an exceptional service for our extension. Their attention to detail and understanding of heritage constraints was impressive. Highly recommended."</p>
+            <div class="reviewer-meta">
+                <span class="reviewer-name">James H.</span>
+                <span class="review-source">via Google Reviews</span>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"Professional, creative, and incredibly helpful throughout the planning process. They transformed our vision into a reality we hadn't thought possible."</p>
+            <div class="reviewer-meta">
+                <span class="reviewer-name">Sarah & Tom</span>
+                <span class="review-source">via Google Reviews</span>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"A fantastic team to work with. The drawings were meticulous and the planning application went through smoothly thanks to their expertise."</p>
+            <div class="reviewer-meta">
+                <span class="reviewer-name">David P.</span>
+                <span class="review-source">via Google Reviews</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <footer id="contact">
+        <span class="footer-logo">
+    <span class="logo-as">As</span><span class="logo-plan">plan</span>
+</span>
+        <div class="footer-links">
+            <a href="https://asplan-associates-ltd.wheree.com/">Wheree.com</a>
+            <a href="https://uk.linkedin.com/company/asplan-associates-ltd">LinkedIn</a>
+            <a href="mailto:Info@asplan.co.uk">Info@asplan.co.uk</a>
+            <a href="tel:07968585858">Tel:07968 585858</a>
+        </div>
+
+        <a href="https://www.google.com/maps/search/Unit+6+The+Axium+Centre,+Dorchester+Road,+Lytchett+Minster,+Poole,+Dorset+BH16+6FE" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="footer-address">
+                <p><strong>Asplan Associates</strong></p>
+                <p>Unit 6 The Axium Centre, Dorchester Road</p>
+                <p>Lytchett Minster, Poole, Dorset BH16 6FE</p>
+            </div>
+        </a>
+
+        <div class="accreditation-container">
+            <a href="https://www.rics.org" target="_blank" class="accred-btn rics-wrapper" style="background: transparent; padding: 0;">
+    <img 
+        src="rics-logo.png" 
+        alt="RICS Regulated" 
+        style="height: 50px; width: auto; filter: brightness(0) invert(1);"
+    >
+</a>
+            
+            <a href="https://cbuilde.com/" target="_blank" class="accred-btn">
+                <img src="cabe-logo.png" alt="CABE Chartered Association of Building Engineers" class="cabe-img">
+            </a>
+        </div>
+        <p style="margin-top:40px; font-size: 0.7rem; color: #f5f5f5;">&copy; 2024 Asplan Associates. All Rights Reserved. Company: 08683966 VAT: GB 287529944 </p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const overlayMenu = document.getElementById('overlayMenu');
+        const menuText = document.getElementById('menuText');
+        const hamburger = document.getElementById('hamburger');
+
+        menuToggle.addEventListener('click', function() {
+            overlayMenu.classList.toggle('active');
+
+            if (overlayMenu.classList.contains('active')) {
+                menuText.innerText = 'Close';
+                hamburger.style.opacity = '0';
+            } else {
+                menuText.innerText = 'Menu';
+                hamburger.style.opacity = '1';
+            }
+        });
+    </script>
+
+</body>
+</html>

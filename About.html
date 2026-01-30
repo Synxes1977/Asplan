@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPLAN | The Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE VARIABLES --- */
+        :root {
+            --color-bg: #0b0b0b;       
+            --color-text: #f5f5f5;     
+            --color-accent: #C5A059;   
+            --color-red: #E60000;      
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Cormorant Garamond', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 1000;
+            background-color: rgba(11, 11, 11, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .logo {
+            justify-self: center;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .logo-as { color: var(--color-red); }
+        .logo-plan { color: #ffffff; }
+
+        .nav-links { justify-self: end; display: flex; gap: 40px; list-style: none; }
+        .nav-links li a {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff; 
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .nav-links li a:hover, .nav-links li a.active { opacity: 1; color: var(--color-accent); }
+        
+        .nav-left a {
+            color: white; text-decoration: none; font-family: var(--font-head); 
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 0 20px;
+        }
+
+        .hero-header h1 {
+            font-family: var(--font-head);
+            font-weight: 300;
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-header p {
+            max-width: 600px;
+            font-size: 1.2rem;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        /* --- THE STORY (Text Section) --- */
+        .story-section {
+            padding: 100px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .story-section h2 {
+            font-family: var(--font-head);
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .story-text {
+            font-size: 1.4rem;
+            color: #ddd;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* --- MISSION VISION VALUES GRID --- */
+        .mvv-container {
+            padding: 80px 40px;
+            background-color: #0f0f0f;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .mvv-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+        }
+
+        .mvv-card {
+            text-align: left;
+            padding: 20px;
+            border-left: 1px solid #333;
+            transition: border-color 0.3s ease;
+        }
+
+        .mvv-card:hover {
+            border-left: 2px solid var(--color-accent);
+        }
+
+        .mvv-icon {
+            font-family: var(--font-head);
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.05);
+            font-weight: 700;
+            display: block;
+            margin-bottom: -20px;
+            line-height: 1;
+        }
+
+        .mvv-title {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .mvv-text {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        /* --- VALUES LIST --- */
+        .values-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .values-list li {
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .values-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: #fff;
+            display: inline-block;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 50px;
+            border: 1px solid rgba(255,255,255,0.3);
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            margin-top: 30px;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* --- MOBILE FIXES --- */
+        @media(max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-header h1 { font-size: 2.5rem; }
+            .mvv-grid { gap: 40px; }
+            .mvv-card { border-left: none; border-top: 1px solid #333; padding-top: 30px; }
+            .mvv-card:hover { border-left: none; border-top: 2px solid var(--color-accent); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index.html">← Back Home</a>
+        </div>
+
+        <a href="index.html" class="logo">
+            <span class="logo-as">As</span><span class="logo-plan">plan</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="team.html">Team</a></li>
+            <li><a href="awards.html">Awards</a></li>
+            <li><a href="sustainability.html">Sustainability</a></li>
+            <li><a href="#" class="active">About</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero-header">
+        <h1>The Studio</h1>
+        <p>Architectural rigor meets creative vision.</p>
+    </header>
+
+    <section class="story-section">
+        <h2>Who We Are</h2>
+        <p class="story-text">
+            Asplan Associates is a multi-disciplinary practice born from the belief that exceptional architecture requires more than just design—it requires a deep mastery of planning policy and surveying. <br><br>
+            Based in Dorset, we have spent years navigating the complex regulatory landscape of the South Coast, turning "difficult" plots into award-winning realities.
+        </p>
+    </section>
+
+    <section class="mvv-container">
+        <div class="mvv-grid">
+
+            <div class="mvv-card">
+                <span class="mvv-icon">M</span>
+                <h3 class="mvv-title">Our Mission</h3>
+                <p class="mvv-text">
+                    To bridge the divide between creative ambition and regulatory reality. We strive to unlock the full potential of every site through a unified approach to architecture, planning, and surveying, ensuring that our clients' visions are not just designed, but delivered.
+                </p>
+            </div>
+
+            <div class="mvv-card">
+                <span class="mvv-icon">V</span>
+                <h3 class="mvv-title">Our Vision</h3>
+                <p class="mvv-text">
+                    To be the definitive architectural authority on the South Coast. We envision a built environment where sustainability, luxury, and functionality coexist, setting a new standard for how modern homes interact with their landscape.
+                </p>
+            </div>
+
+            <div class="mvv-card">
+                <span class="mvv-icon">E</span>
+                <h3 class="mvv-title">Our Ethos</h3>
+                <p class="mvv-text">
+                    Our work is defined by an unshakeable commitment to three core values:
+                </p>
+                <ul class="values-list">
+                    <li>Precision in Detail</li>
+                    <li>Integrity in Planning</li>
+                    <li>Innovation in Design</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h4 style="font-family: var(--font-head); color:#fff; text-transform:uppercase; letter-spacing:3px; margin-bottom:10px;">Ready to begin?</h4>
+        <p style="color:#777;">Let us navigate the journey from concept to construction.</p>
+        <a href="contact.html" class="btn">Start a Conversation</a>
+    </section>
+
+    <footer style="text-align:center; padding: 40px; border-top: 1px solid #222; font-size: 0.7rem; color: #444;">
+        &copy; 2024 Asplan Associates. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

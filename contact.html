@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPLAN | Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE THEME STYLES --- */
+        :root { 
+            --color-bg: #0b0b0b; 
+            --color-text: #f5f5f5; 
+            --color-accent: #C5A059; /* Gold */
+            --color-red: #E60000; 
+            --font-head: 'Montserrat', sans-serif; 
+            --font-body: 'Cormorant Garamond', serif; 
+        }
+
+        body { 
+            background-color: var(--color-bg); 
+            color: var(--color-text); 
+            font-family: var(--font-body); 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- NAVIGATION --- */
+        nav { 
+            padding: 20px 50px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: rgba(0,0,0,0.95); 
+            border-bottom: 1px solid #222; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; }
+        .logo-as { color: var(--color-red); } 
+        .logo-plan { color: #fff; }
+        
+        .nav-links a { margin-left: 30px; font-family: var(--font-head); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #ccc; }
+        .nav-links a:hover { color: var(--color-accent); }
+
+        /* --- HERO HEADER --- */
+        .page-header {
+            padding: 100px 20px 60px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('luxury-kitchen-extension.webp'); /* Uses your kitchen photo as background */
+            background-size: cover;
+            background-position: center;
+        }
+        .page-header h1 {
+            font-family: var(--font-head);
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin: 0;
+            color: #fff;
+        }
+        .page-header p {
+            font-family: var(--font-head);
+            color: var(--color-accent);
+            margin-top: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- CONTACT FORM SECTION --- */
+        .contact-container {
+            max-width: 600px;
+            margin: 50px auto 100px auto;
+            padding: 40px;
+            background: #111;
+            border: 1px solid #222;
+        }
+
+        form { display: flex; flex-direction: column; gap: 20px; }
+
+        label { font-family: var(--font-head); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: -10px;}
+
+        input, textarea {
+            background: #0b0b0b;
+            border: 1px solid #333;
+            padding: 15px;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            width: 100%;
+            box-sizing: border-box; /* Fixes padding issues */
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        button {
+            background: var(--color-accent);
+            color: #000;
+            border: none;
+            padding: 15px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover { background: #fff; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            color: #444;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.8rem;
+            border-top: 1px solid #222;
+        }
+
+        /* Mobile Adjustments */
+        @media(max-width: 768px) {
+            .contact-container { margin: 20px; padding: 20px; }
+            .page-header h1 { font-size: 2rem; }
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* Simple hide for mobile, or add your burger menu code here */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <span class="logo-as">As</span><span class="logo-plan">plan</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="residential.html">Residential</a>
+            <a href="awards.html">News</a>
+            <a href="contact.html" style="color: var(--color-accent);">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Contact Us</h1>
+        <p>Start your project today</p>
+    </header>
+
+    <section class="contact-container">
+        
+        <form action="https://formspree.io/f/mnjvgwzj" method="POST">
+            
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Enter your full name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter your email address" required>
+
+            <label>Phone (Optional)</label>
+            <input type="tel" name="phone" placeholder="Enter your phone number">
+
+            <label>Message</label>
+            <textarea name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Asplan Associates. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

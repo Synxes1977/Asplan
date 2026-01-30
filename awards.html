@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPLAN | Awards & Press</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE VARIABLES --- */
+        :root {
+            --color-bg: #0b0b0b;       
+            --color-text: #f5f5f5;     
+            --color-accent: #C5A059;   
+            --color-red: #E60000;      
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Cormorant Garamond', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 1000;
+            background-color: rgba(11, 11, 11, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .logo {
+            justify-self: center;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .logo-as { color: var(--color-red); }
+        .logo-plan { color: #ffffff; }
+
+        .nav-links { justify-self: end; display: flex; gap: 40px; list-style: none; }
+        .nav-links li a {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff; 
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .nav-links li a:hover, .nav-links li a.active { opacity: 1; color: var(--color-accent); }
+        
+        .nav-left a {
+            color: white; text-decoration: none; font-family: var(--font-head); 
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        /* --- HEADER SECTION --- */
+        .page-header {
+            padding: 180px 20px 80px 20px;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 70%);
+        }
+
+        .page-header h1 {
+            font-family: var(--font-head);
+            font-weight: 300;
+            font-size: 3rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            color: var(--color-accent);
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 1.3rem;
+        }
+
+        /* --- NEWS GRID --- */
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 100px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .news-card {
+            background: #121212;
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent);
+        }
+
+        .news-image {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(80%);
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+
+        .news-card:hover .news-image img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .date {
+            font-family: var(--font-head);
+            font-size: 0.7rem;
+            color: #666;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .news-title {
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            color: #aaa;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            margin-top: auto;
+            color: var(--color-accent);
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            align-self: flex-start;
+            transition: 0.3s;
+        }
+
+        .read-more:hover {
+            border-bottom: 1px solid var(--color-accent);
+        }
+
+        /* --- MOBILE FIXES --- */
+        @media(max-width: 768px) {
+            .nav-links { display: none; }
+            .page-header h1 { font-size: 2rem; }
+            .news-container { padding: 0 20px 80px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index.html">← Back Home</a>
+        </div>
+
+        <a href="index.html" class="logo">
+            <span class="logo-as">As</span><span class="logo-plan">plan</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="#" class="active">Awards</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1>Awards & Press</h1>
+        <p>Recognition of architectural excellence and planning success.</p>
+    </header>
+
+    <section class="news-container">
+
+        <article class="news-card">
+            <div class="news-image">
+                <img src="Cabe-short.webp" alt="Whitecliff Crescent"
+                style="object-position: left center;">
+            </div>
+            <div class="news-content">
+                <span class="date">Nov 2023</span>
+                <h3 class="news-title">CABE Awards 2024 Shortlisted</h3>
+                <p class="news-excerpt">Asplan Shortlisted in the Cabe 2024 Awards</p>
+                <a href="#" class="read-more">View Project Details</a>
+            </div>
+        </article>
+
+        <article class="news-card">
+            <div class="news-image">
+                <img src="build-awards-2023.webp" alt="Award Ceremony"
+                style="object-position: left center;">
+            </div>
+            <div class="news-content">
+                <span class="date">Mar 2023</span>
+                <h3 class="news-title">Asplan Associates Honored at the BUILD Architecture Awards 2023</h3>
+                <p class="news-excerpt">The team at Asplan Associates is thrilled to have received the BUILD Excellence Award in Architectural Design 2023 - Dorset.
+
+This achievement reflects our hard work and dedication as leaders within the industry. Thank you to the Architecture Awards 2023 for recognizing our commitment to delivering outstanding architectural design.</p>
+                <a href="#" class="read-more">Read Reviews</a>
+            </div>
+        </article>
+
+       <article class="news-card">
+            <div class="news-image">
+                <img src="Daily-echo-southampton.webp" alt="Colonnade Southampton Development">
+            </div>
+            <div class="news-content">
+                <span class="date">Jan 2023</span>
+                <h3 class="news-title">Daily Echo: Woolston: Unused land at The Colonnade set to be upgraded</h3>
+                <p class="news-excerpt">A DEVELOPER who submitted two alternative proposals to transform a Southampton site used to display advertising hoardings has seen both schemes approved.</p>
+                <a href="https://www.dailyecho.co.uk/news/23245502.unused-land-colonade-woolston-set-upgraded/" class="read-more">Learn More</a>
+            </div>
+        </article>
+
+        <article class="news-card">
+            <div class="news-image">
+                <img src="Canford-Magna-Echo.webp" alt="Canford Magna development">
+            </div>
+            <div class="news-content">
+                <span class="date">Sept 2022</span>
+                <h3 class="news-title">Daily Echo: Two applications for combined 34 homes in Canford Magna</h3>
+                <p class="news-excerpt">TWO new projects proposing a host of new homes on pieces of land adjacent to separate “colossal” developments have been submitted.</p>
+                <a href="https://www.bournemouthecho.co.uk/news/20863502.two-applications-combined-34-homes-canford-magna/" class="read-more">Learn More</a>
+            </div>
+        </article>
+
+        <article class="news-card">
+            <div class="news-image">
+                <img src="Daily-Echo-PooleSeafront.webp" alt="Poole seafornt Update">
+            </div>
+            <div class="news-content">
+                <span class="date">Sept 2019</span>
+                <h3 class="news-title">Daily Echo: THE latest stage of a £9.5m Poole seafront regeneration project should get underway this month.</h3>
+                <p class="news-excerpt">According to BCP Council work is set to start at Branksome Chine and at Shore Road within the next few days.</p>
+                <a href="https://www.bournemouthecho.co.uk/news/17891760.latest-stage-9-5m-poole-seafront-regeneration-project-start/?ref=appshr" class="read-more">Learn More</a>
+            </div>
+        </article>
+
+        <article class="news-card">
+            <div class="news-image">
+                <img src="DailyEcho-HamBeach-hut.webp" alt="Hamworthy Beach Huts">
+            </div>
+            <div class="news-content">
+                <span class="date">Feb 2018</span>
+                <h3 class="news-title">Daily Echo: Plans submitted for beach huts in Sandbanks and Hamworthy</h3>
+                <p class="news-excerpt">The proposals for a first floor extension to an existing block at Shore Road promenade will be considered by planners.</p>
+                <a href="https://www.bournemouthecho.co.uk/news/15963581.Plans_submitted_for_beach_huts_in_Sandbanks_and_Hamworthy/" class="read-more">Learn More</a>
+            </div>
+        </article>
+
+        <article class="news-card">
+            <div class="news-image">
+                <img src="DailyEcho-OldBeachHuts.webp" alt="Old Beach huts to go">
+            </div>
+            <div class="news-content">
+                <span class="date">Nov 2017</span>
+                <h3 class="news-title">Daily Echo: Scheme for new beach huts at Canford Cliffs withdrawn (but new plans to be submitted)</h3>
+                <p class="news-excerpt">PLANS to build a second tier of beach huts on top of an existing block of huts at Canford Cliffs have been withdrawn.</p>
+                <a href="https://www.bournemouthecho.co.uk/news/15690059.scheme-for-new-beach-huts-at-canford-cliffs-withdrawn-but-new-plans-to-be-submitted/" class="read-more">Learn More</a>
+            </div>
+        </article>
+
+        <article class="news-card">
+            <div class="news-image">
+                <img src="Beach-huts-first-look-Echo.webp" alt="Beach Huts First Look">
+            </div>
+            <div class="news-content">
+                <span class="date">Aug 2017</span>
+                <h3 class="news-title">Daily Echo: First look at plans to build new double decker beach huts in Poole</h3>
+                <p class="news-excerpt">PLANS to build 12 new beach huts on top of another block of huts at Canford Cliffs have been submitted to planners.</p>
+                <a href="https://www.bournemouthecho.co.uk/news/districts/poole/15483467.First_look_at_plans_to_build_new____double_decker____beach_huts_in_Poole/?ref=fbshr" class="read-more">Learn More</a>
+            </div>
+        </article>
+
+        
+
+    </section>
+
+    <footer style="text-align:center; padding: 40px; border-top: 1px solid #222; font-size: 0.7rem; color: #444;">
+        &copy; 2024 Asplan Associates. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

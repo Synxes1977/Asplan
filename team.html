@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPLAN | The Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- COPYING YOUR CORE STYLES FOR CONSISTENCY --- */
+        :root {
+            --color-bg: #0b0b0b;       
+            --color-text: #f5f5f5;     
+            --color-accent: #C5A059;   
+            --color-red: #E60000;      
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Cormorant Garamond', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 1000;
+            background-color: rgba(11, 11, 11, 0.95); /* Slightly darker for readability */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .logo {
+            justify-self: center;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .logo-as { color: var(--color-red); }
+        .logo-plan { color: #ffffff; }
+
+        .nav-links { justify-self: end; display: flex; gap: 40px; list-style: none; }
+        .nav-links li a {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff; 
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .nav-links li a:hover, .nav-links li a.active { opacity: 1; color: var(--color-accent); }
+        
+        /* Back Button logic */
+        .nav-left a {
+            color: white; text-decoration: none; font-family: var(--font-head); 
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        /* --- TEAM SPECIFIC LAYOUT --- */
+        .team-header {
+            padding: 180px 20px 60px 20px;
+            text-align: center;
+        }
+
+        .team-header h1 {
+            font-family: var(--font-head);
+            font-weight: 300;
+            font-size: 3rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .team-header p {
+            color: var(--color-accent);
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        .team-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .member-card {
+            background: #121212;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.4s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-accent);
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%); /* Makes it feel architectural/serious */
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+
+        .member-card:hover .photo-frame img {
+            filter: grayscale(0%); /* Color returns on hover */
+            transform: scale(1.05);
+        }
+
+        .info-area {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .member-name {
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .member-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--color-accent); /* Gold color for role */
+            margin-bottom: 20px;
+            font-family: var(--font-head);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .member-blurb {
+            font-size: 1rem;
+            color: #aaa;
+            line-height: 1.6;
+            font-family: var(--font-body);
+        }
+
+        /* Mobile Fix */
+        @media(max-width: 768px) {
+            .nav-links { display: none; }
+            .team-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index.html">← Back Home</a>
+        </div>
+
+        <a href="index.html" class="logo">
+            <span class="logo-as">As</span><span class="logo-plan">plan</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="#" class="active">Team</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="team-header">
+        <h1>The Architects</h1>
+        <p>Precision. Experience. Dedication.</p>
+    </header>
+
+    <section class="team-container">
+        
+        <div class="member-card">
+            <div class="photo-frame">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop" alt="Staff Member">
+            </div>
+            <div class="info-area">
+                <h3 class="member-name">Keith Gould</h3>
+                <span class="member-role">Managing Director</span>
+                <p class="member-blurb">Keith leads the strategic direction of Asplan. With 25 years in planning regulation, he specializes in overturning difficult council refusals.</p>
+            </div>
+        </div>
+
+        <div class="member-card">
+            <div class="photo-frame">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop" alt="Staff Member">
+            </div>
+            <div class="info-area">
+                <h3 class="member-name">Luke Evans</h3>
+                <span class="member-role">Senior Architect</span>
+                <p class="member-blurb">A master of modern minimalism. Luke's designs focus on clean lines and light, ensuring every project feels both spacious and intimate.</p>
+            </div>
+        </div>
+
+        <div class="member-card">
+            <div class="photo-frame">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop" alt="Staff Member">
+            </div>
+            <div class="info-area">
+                <h3 class="member-name">Mitch Reeves</h3>
+                <span class="member-role">Technical Lead</span>
+                <p class="member-blurb">Mitch bridges the gap between concept and construction. He ensures that our ambitious designs are structurally sound and buildable.</p>
+            </div>
+        </div>
+
+        <div class="member-card">
+            <div class="photo-frame">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Staff Member">
+            </div>
+            <div class="info-area">
+                <h3 class="member-name">Reiss Blundell</h3>
+                <span class="member-role">Planning Consultant</span>
+                <p class="member-blurb">Reiss handles the complex negotiations with local authorities. His detailed knowledge of policy ensures smooth approvals for our clients.</p>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>

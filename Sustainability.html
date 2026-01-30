@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPLAN | Sustainability</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE VARIABLES --- */
+        :root {
+            --color-bg: #0b0b0b;       
+            --color-text: #f5f5f5;     
+            --color-accent: #C5A059;   
+            --color-red: #E60000;      
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Cormorant Garamond', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 1000;
+            background-color: rgba(11, 11, 11, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .logo {
+            justify-self: center;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .logo-as { color: var(--color-red); }
+        .logo-plan { color: #ffffff; }
+
+        .nav-links { justify-self: end; display: flex; gap: 40px; list-style: none; }
+        .nav-links li a {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff; 
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .nav-links li a:hover, .nav-links li a.active { opacity: 1; color: var(--color-accent); }
+        
+        .nav-left a {
+            color: white; text-decoration: none; font-family: var(--font-head); 
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        /* --- HEADER SECTION --- */
+        .page-header {
+            padding: 180px 20px 80px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, #1a1a1a 0%, #0b0b0b 100%);
+        }
+
+        .page-header h1 {
+            font-family: var(--font-head);
+            font-weight: 300;
+            font-size: 3rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .intro-blurb {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ccc;
+            font-family: var(--font-body);
+            font-size: 1.3rem;
+            line-height: 1.8;
+            border-left: 2px solid var(--color-accent);
+            padding-left: 30px;
+            text-align: left;
+        }
+
+        .highlight { color: var(--color-accent); font-style: italic; }
+
+        /* --- STRATEGY GRID --- */
+        .strategy-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .strategy-card {
+            background: #121212;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent);
+            background: #151515;
+        }
+
+        .image-wrapper {
+            height: 250px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(80%);
+            transition: 0.5s ease;
+        }
+
+        .strategy-card:hover .image-wrapper img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 40px;
+        }
+
+        .card-number {
+            font-family: var(--font-head);
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: 220px;
+            right: 20px;
+            font-weight: 700;
+        }
+
+        .card-title {
+            font-family: var(--font-head);
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card-text {
+            color: #bbb;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- KEY FEATURES LIST --- */
+        .features-section {
+            padding: 80px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 40px;
+        }
+
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            border: 1px solid #333;
+            padding: 15px 30px;
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            opacity: 0.7;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .feature-item:hover {
+            opacity: 1;
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        /* --- MOBILE FIXES --- */
+        @media(max-width: 768px) {
+            .nav-links { display: none; }
+            .page-header h1 { font-size: 2.2rem; }
+            .intro-blurb { padding-left: 0; border-left: none; text-align: center; font-size: 1.1rem; }
+            .strategy-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index.html">← Back Home</a>
+        </div>
+
+        <a href="index.html" class="logo">
+            <span class="logo-as">As</span><span class="logo-plan">plan</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="awards.html">Awards</a></li>
+            <li><a href="#" class="active">Sustainability</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1>Future Proofing</h1>
+        <div class="intro-blurb">
+            <p>At Asplan, sustainability is not an afterthought—it is a structural imperative. We navigate the complex landscape of <span class="highlight">Biodiversity Net Gain</span>, energy efficiency, and modern surveying to ensure your project is compliant today and valuable tomorrow. We bridge the gap between environmental responsibility and architectural luxury.</p>
+        </div>
+    </header>
+
+    <section class="strategy-container">
+
+        <div class="strategy-card">
+            <div class="image-wrapper">
+                <img src="Sustainable-building.webp" alt="Sustainable Timber Architecture">
+            </div>
+            <span class="card-number">01</span>
+            <div class="card-content">
+                <span class="card-title">Fabric First Architecture</span>
+                <p class="card-text">We prioritize the thermal envelope. By specifying high-performance insulation, airtightness, and passive solar gain, we reduce the need for mechanical heating before a single brick is laid. Our designs prove that energy efficiency does not require compromising on aesthetic.</p>
+            </div>
+        </div>
+
+        <div class="strategy-card">
+            <div class="image-wrapper">
+                <img src="eco-image.webp" alt="Green Planning">
+            </div>
+            <span class="card-number">02</span>
+            <div class="card-content">
+                <span class="card-title">Planning & Biodiversity</span>
+                <p class="card-text">Modern planning policy demands a commitment to nature. We are experts in 'Biodiversity Net Gain' (BNG), ensuring your development enhances the local ecology. From green roofs to sustainable urban drainage, we turn regulatory hurdles into design features.</p>
+            </div>
+        </div>
+
+        <div class="strategy-card">
+            <div class="image-wrapper">
+                <img src="solar-panel.webp" alt="Solar Technology">
+            </div>
+            <span class="card-number">03</span>
+            <div class="card-content">
+                <span class="card-title">Surveying & Retrofit</span>
+                <p class="card-text">The most sustainable building is the one that already exists. Our surveying team specializes in assessing existing stock for retrofit potential, utilizing lifecycle analysis to integrate heat pumps and solar technology into older properties effectively.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="features-section">
+        <h4 style="font-family:var(--font-head); color:#666; letter-spacing:2px; text-transform:uppercase;">Our Standards</h4>
+        <div class="features-grid">
+            <a class="feature-item" href="https://energysavingtrust.org.uk/passivhaus-what-you-need-know/">Passive Haus Principles</a>
+            <a class="feature-item" href="https://www.gov.uk/guidance/understanding-biodiversity-net-gain">Biodiversity Net Gain</a>
+            <a class="feature-item" href="https://energysavingtrust.org.uk/advice/air-source-heat-pumps/">Air Source Heat Pumps</a>
+            <a class="feature-item" href="https://energysavingtrust.org.uk/advice/solar-panels/">Solar PV Integration</a>
+            <a class="feature-item" href="https://www.iop.org/explore-physics/physics-around-you/sustainable-building/thermal-modelling">Thermal Modelling</a>
+            <a class="feature-item" href="https://www.bgs.ac.uk/geology-projects/suds/">Sustainable Drainage (SuDS)</a>
+        </div>
+    </section>
+
+    <footer style="text-align:center; padding: 40px; border-top: 1px solid #222; font-size: 0.7rem; color: #444;">
+        &copy; 2024 Asplan Associates. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
