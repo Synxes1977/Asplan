@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPLAN | Our Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE THEME --- */
+        :root { --color-bg: #0b0b0b; --color-text: #f5f5f5; --color-accent: #C5A059; --font-head: 'Montserrat', sans-serif; --font-body: 'Cormorant Garamond', serif; }
+        body { background-color: var(--color-bg); color: var(--color-text); font-family: var(--font-body); margin: 0; padding: 0; }
+        
+        /* --- NAV (Copy of your existing nav) --- */
+        nav { padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.95); border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; text-decoration: none;}
+        .logo-as { color: #E60000; } .logo-plan { color: #fff; }
+        .nav-links a { margin-left: 30px; font-family: var(--font-head); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #ccc; text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--color-accent); }
+
+        /* --- HEADER --- */
+        .page-header {
+            padding: 120px 20px 80px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('luxury-kitchen-extension.webp'); /* Re-using your kitchen shot */
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid #222;
+        }
+        .page-header h1 { font-family: var(--font-head); font-size: 3rem; text-transform: uppercase; letter-spacing: 5px; margin: 0; color: #fff; }
+        .page-header p { font-family: var(--font-head); color: var(--color-accent); margin-top: 15px; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* --- SERVICES GRID --- */
+        .services-container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Left Title, Right Content */
+            gap: 40px;
+            margin-bottom: 80px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 60px;
+        }
+        
+        .service-row:last-child { border-bottom: none; margin-bottom: 0; }
+
+        .service-title h2 {
+            font-family: var(--font-head);
+            font-size: 2rem;
+            color: #fff;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .service-step {
+            font-family: var(--font-head);
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .service-content p { font-size: 1.2rem; line-height: 1.8; color: #ccc; margin-top: 0; }
+        .service-content ul { list-style: none; padding: 0; margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .service-content li { font-family: var(--font-head); font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .service-content li::before { content: "•"; color: var(--color-accent); display: inline-block; width: 15px; }
+
+        /* --- CTA --- */
+        .cta-section { text-align: center; padding: 60px; background: #111; margin-top: 40px; }
+        .cta-btn { display: inline-block; padding: 15px 40px; border: 1px solid var(--color-accent); color: var(--color-accent); text-transform: uppercase; font-family: var(--font-head); letter-spacing: 2px; text-decoration: none; transition: 0.3s; }
+        .cta-btn:hover { background: var(--color-accent); color: #000; }
+
+        @media(max-width: 768px) {
+            .service-row { grid-template-columns: 1fr; gap: 20px; }
+            .service-content ul { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo"><span class="logo-as">As</span><span class="logo-plan">plan</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="Residential.html">Residential</a>
+            <a href="services.html" class="active">Services</a> 
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Our Process</h1>
+        <p>From Concept to Construction</p>
+    </header>
+
+    <section class="services-container">
+        
+        <div class="service-row">
+            <div class="service-title">
+                <span class="service-step">Stage 01</span>
+                <h2>Feasibility & Concept</h2>
+            </div>
+            <div class="service-content">
+                <p>We begin by assessing the potential of your site. We explore design options that maximize value and space while navigating local planning constraints. This is where your vision starts to take shape.</p>
+                <ul>
+                    <li>Site Appraisal</li>
+                    <li>Concept Sketches</li>
+                    <li>Pre-application Advice</li>
+                    <li>Measured Surveys</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="service-row">
+            <div class="service-title">
+                <span class="service-step">Stage 02</span>
+                <h2>Planning Applications</h2>
+            </div>
+            <div class="service-content">
+                <p>We handle the complex bureaucracy of the planning system. We prepare detailed architectural drawings and design and access statements to give your project the best chance of approval.</p>
+                <ul>
+                    <li>Full Planning Permission</li>
+                    <li>Householder Applications</li>
+                    <li>Listed Building Consent</li>
+                    <li>Heritage Statements</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="service-row">
+            <div class="service-title">
+                <span class="service-step">Stage 03</span>
+                <h2>Technical Design</h2>
+            </div>
+            <div class="service-content">
+                <p>Once planning is approved, we add the technical detail required for construction. We produce Building Regulations drawings and coordinate with structural engineers to ensure the build is safe and compliant.</p>
+                <ul>
+                    <li>Building Regulations</li>
+                    <li>Construction Details</li>
+                    <li>Structural Coordination</li>
+                    <li>Specification</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="cta-section">
+        <h3 style="color:#fff; font-family: 'Montserrat'; text-transform: uppercase; margin-bottom: 30px;">Ready to discuss your project?</h3>
+        <a href="contact.html" class="cta-btn">Get in Touch</a>
+    </div>
+
+</body>
+</html>
