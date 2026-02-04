@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Architectural Design & Planning Consultants Poole | Asplan Associates</title>
+    <meta property="og:title" content="Asplan Associates | Design & Planning Poole">
+<meta property="og:description" content="Transforming homes in Poole & Dorset. We handle the design and planning process from start to finish.">
+<meta property="og:image" content="https://asplan.org/luxury-kitchen-extension.webp"> <meta property="og:url" content="https://asplan.org">
+<meta property="og:type" content="website">
+    <meta name="description" content="Award-winning architectural designers in Poole & Dorset. Specializing in securing planning permission for luxury extensions, heritage sites, and new builds.">
+    
+    <meta name="keywords" content="Architectural Designer Poole, Planning Consultant Dorset, House Extensions Sandbanks, Building Regulations, Asplan Associates">>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASPLAN | Precision Architecture</title>
@@ -135,10 +144,16 @@
             backdrop-filter: blur(20px); 
             -webkit-backdrop-filter: blur(20px); 
             
-            z-index: 1500;
+            /* Sit above the fixed header (nav uses z-index:2000) */
+            z-index: 3000;
             display: flex;
             align-items: center;
             justify-content: center;
+
+            /* Allow the overlay itself to scroll on mobile while preventing scroll chaining to the page behind */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
             
             opacity: 0;
             visibility: hidden;
@@ -194,23 +209,47 @@
         }
 
         /* --- MOBILE MENU ADJUSTMENT --- */
+
 @media (max-width: 768px) {
-    nav {
-        /* 1. Reduce side padding to push items to the edges */
-        padding: 20px 10px !important; 
+    
+    /* 1. Make the menu cover the WHOLE screen */
+    .nav-links {
+        position: fixed;        /* Locks it to the screen */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;          /* 100% of Viewport Height */
+        background: rgba(11, 11, 11, 0.98); /* Solid dark background (almost opaque) */
+        
+        display: flex;          /* Enables Flexbox */
+        flex-direction: column; /* Stacks links vertically */
+        justify-content: center;/* Centers them top-to-bottom */
+        align-items: center;    /* Centers them left-to-right */
+        
+        z-index: 999;           /* Ensures it sits ON TOP of everything */
+        overflow-y: auto;       /* Allows scrolling INSIDE the menu if needed */
+        
+        /* Start hidden (if you are using JS to toggle it) */
+        /* transform: translateX(100%); transition: 0.3s ease; */
     }
 
-    .logo {
-        /* 2. Slightly shrink the logo text so it doesn't fight for space */
-        font-size: 1.2rem !important; 
-    }
-
+    /* 2. Style the Links to be big and clickable */
     .nav-links a {
-        /* 3. If your links are visible, reduce their spacing */
-        margin-left: 10px !important;
-        font-size: 0.7rem !important;
+        font-size: 1.5rem !important; /* Big text for thumbs */
+        margin: 15px 0 !important;    /* Space between links */
+        display: block;
     }
 }
+
+/* 3. The "Lock" Class (See Part 2) */
+body.no-scroll {
+    overflow: hidden; /* This stops the background page from moving */
+    position: fixed;   /* Lock the document in place on iOS/Android */
+    width: 100%;
+    left: 0;
+    right: 0;
+    /* top is set inline by JS to preserve the current scroll position */
+} 
 
         /* --- HERO SECTION --- */
       header.hero {
@@ -273,7 +312,8 @@
         .footer-address { margin: 50px 0; color: #888; font-family: var(--font-body); font-size: 1rem; line-height: 1.8; font-weight: 300; }
         .footer-address strong { color: #ccc; font-weight: 400; }
 
-        .accreditation-container { margin-top: 40px; display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .accreditation-container { margin-top: 40px; margin-bottom: 30px; display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .footer-legal { margin-top: 24px; color: #888; font-size: 0.95rem; }
         .accred-btn { display: flex; align-items: center; justify-content: center; opacity: 0.9; transition: all 0.3s; }
         .accred-btn:hover { opacity: 1; transform: translateY(-2px); }
         .rics-wrapper { background-color: #ffffff; padding: 10px 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
@@ -402,6 +442,36 @@
 @media(max-width: 768px) {
     .reviews-section { padding: 60px 20px; }
     .reviews-header h2 { font-size: 1.8rem; }
+
+    /* Ensure overlay menu starts below the fixed header/logo on small screens */
+    .overlay-menu { padding-top: 110px !important; align-items: flex-start !important; z-index: 3001 !important; }
+    /* If you prefer the menu to use remaining viewport only, use: height: calc(100vh - 110px); */
+}
+
+/* Small phones (e.g., iPhone) — nudge the menu button left so it clears the logo */
+@media (max-width: 480px) {
+    .menu-btn { transform: translateX(-20px) !important; }
+}
+
+/* --- FIX FOR MISSING MOBILE HERO IMAGE --- */
+@media (max-width: 768px) {
+    .hero, .page-header, .project-hero {
+        /* This forces the image to scroll normally on phones, which fixes the bug */
+        background-attachment: scroll !important;
+        background-position: center center !important;
+    }
+}
+
+/* --- TABLET (iPad) HERO ADJUSTMENTS --- */
+@media (min-width: 768px) and (max-width: 1024px) {
+    header.hero {
+        /* Reduce height and use 'contain' so the whole image is visible rather than an enlarged cropped section */
+        height: 70vh !important;
+        background-attachment: scroll !important; /* disable fixed background on iOS/ iPadOS */
+        background-position: center center !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+    }
 }
     </style>
 </head>
@@ -576,6 +646,8 @@
                 <p>Unit 6 The Axium Centre, Dorchester Road</p>
                 <p>Lytchett Minster, Poole, Dorset BH16 6FE</p>
             </div>
+
+        
         </a>
 
         <div class="accreditation-container">
@@ -591,29 +663,70 @@
                 <img src="cabe-logo.png" alt="CABE Chartered Association of Building Engineers" class="cabe-img">
             </a>
         </div>
+        <div class="footer-legal">
+            <a href="Privacy-policy.html">Privacy Policy</a> | <a href="Terms-of-use.html">Terms of Use</a>
+        </div>
         <p style="margin-top:40px; font-size: 0.7rem; color: #f5f5f5;">&copy; 2026 Asplan Associates. All Rights Reserved. Registered in England 08683966 VAT: GB 287529944 </p>
-    <p style="font-size: 0.7rem; color: #666; margin-top: 10px;">
-        <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
-    </p>
+        
     </footer>
 
     <script>
+        // Freeze background when overlay menu is open — robust for iOS/Android
         const menuToggle = document.getElementById('menuToggle');
         const overlayMenu = document.getElementById('overlayMenu');
         const menuText = document.getElementById('menuText');
         const hamburger = document.getElementById('hamburger');
+        const body = document.body;
 
-        menuToggle.addEventListener('click', function() {
-            overlayMenu.classList.toggle('active');
+        let scrollPosition = 0;
 
-            if (overlayMenu.classList.contains('active')) {
-                menuText.innerText = 'Close';
-                hamburger.style.opacity = '0';
-            } else {
-                menuText.innerText = 'Menu';
-                hamburger.style.opacity = '1';
+        function openMenu() {
+            // save scroll and lock body in place
+            scrollPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
+            body.style.top = `-${scrollPosition}px`;
+            body.classList.add('no-scroll');
+            overlayMenu.classList.add('active');
+
+            menuText.innerText = 'Close';
+            hamburger.style.opacity = '0';
+        }
+
+        function closeMenu() {
+            body.classList.remove('no-scroll');
+            overlayMenu.classList.remove('active');
+            body.style.top = '';
+            window.scrollTo(0, scrollPosition);
+
+            menuText.innerText = 'Menu';
+            hamburger.style.opacity = '1';
+        }
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                if (overlayMenu.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+        }
+
+        // Prevent touchmove on the document (outside the overlay) when menu is open
+        document.addEventListener('touchmove', function(e) {
+            if (body.classList.contains('no-scroll')) {
+                // allow scrolling inside the overlay itself
+                if (!overlayMenu.contains(e.target)) {
+                    e.preventDefault();
+                }
             }
-        });
+        }, { passive: false });
+
+        // Optional: close menu when tapping the overlay background itself
+        if (overlayMenu) {
+            overlayMenu.addEventListener('click', function(e) {
+                if (e.target === overlayMenu) closeMenu();
+            });
+        }
     </script>
 
 </body>
