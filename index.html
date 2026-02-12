@@ -58,12 +58,13 @@
             width: 100%;
             padding: 20px 50px;
             z-index: 2000; 
-            background-color: rgba(11, 11, 11, 0.9);
+            background-color: rgba(11, 11, 11, 0.95); /* Made darker for readability */
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
-            justify-content: center; /* Center the logo */
+            justify-content: center; 
             align-items: center;
+            height: 90px; /* Fixed height for consistency */
         }
 
         .logo {
@@ -79,29 +80,38 @@
 
         /* --- HERO SECTION (CONSTRUCTION MESSAGE) --- */
         header.hero {
-            flex-grow: 1; /* Pushes footer to bottom */
-            min-height: 80vh;
+            flex-grow: 1; 
             width: 100%;
-            /* Uses your existing luxury image */
+            min-height: 100vh; /* Fill the whole screen */
+            
+            /* BACKGROUND IMAGE */
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('luxury-kitchen-extension.webp');
             background-size: cover;
             background-position: center;
+            
+            /* FLEXBOX CENTERING */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            
+            /* THE FIX: Safety Padding */
+            padding-top: 140px; /* Pushes content down below the nav bar */
+            padding-bottom: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         .hero h1 {
             font-family: var(--font-head);
             font-weight: 300;
-            font-size: 4rem;
-            letter-spacing: 8px;
+            font-size: 3.5rem; /* Slightly smaller for mobile safety */
+            letter-spacing: 6px;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: #fff;
+            margin-top: 0; /* Clear default margins */
         }
 
         .hero h2 {
@@ -116,11 +126,12 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-style: italic;
             opacity: 0.9;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             max-width: 600px;
+            padding: 0 10px;
         }
 
         /* --- FOOTER STYLING --- */
@@ -152,8 +163,12 @@
 
         /* --- MOBILE ADJUSTMENTS --- */
         @media(max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+            nav { padding: 10px 20px; height: 80px; }
+            .hero h1 { font-size: 2.2rem; letter-spacing: 3px; }
             .btn { width: 100%; max-width: 300px; display: block; margin: 10px auto; }
+            
+            /* Extra safety for small phones */
+            header.hero { padding-top: 160px; }
         }
     </style>
 </head>
@@ -186,7 +201,7 @@
             <p>Lytchett Minster, Poole, Dorset BH16 6FE</p>
         </div>
 
-        <div class="accreditation-container">
+         <div class="accreditation-container">
             <a href="https://www.rics.org" target="_blank" class="accred-btn rics-wrapper" style="background: transparent; padding: 0;">
     <img 
         src="rics-logo.png" 
@@ -200,6 +215,7 @@
                 style="height: 50px; width: auto; filter: brightness(0) invert(1);">
             </a>
         </div>
+        
         <p style="margin-top:30px; font-size: 0.7rem; color: #444;">© 2026 Asplan Associates. All Rights Reserved.</p>
     </footer>
 
