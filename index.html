@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>ASPLAN | Site Under Construction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --color-bg: #0b0b0b;       
+            --color-text: #f5f5f5;     
+            --color-accent: #C5A059;   
+            --color-red: #E60000;      
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Cormorant Garamond', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- UTILITIES --- */
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--color-accent);
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            margin: 10px;
+            transition: all 0.4s ease;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            color: #000;
+        }
+
+        /* --- NAVIGATION (LOGO ONLY) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 2000; 
+            background-color: rgba(11, 11, 11, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center; /* Center the logo */
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            white-space: nowrap; 
+        }
+        .logo-as { color: var(--color-red); }
+        .logo-plan { color: #ffffff; }
+
+        /* --- HERO SECTION (CONSTRUCTION MESSAGE) --- */
+        header.hero {
+            flex-grow: 1; /* Pushes footer to bottom */
+            min-height: 80vh;
+            width: 100%;
+            /* Uses your existing luxury image */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('luxury-kitchen-extension.webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-head);
+            font-weight: 300;
+            font-size: 4rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-family: var(--font-head);
+            color: var(--color-accent);
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--color-accent);
+            padding-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* --- FOOTER STYLING --- */
+        footer { 
+            background: #000; 
+            padding: 40px 0; 
+            text-align: center; 
+            border-top: 1px solid #222; 
+        }
+        
+        .footer-address { 
+            margin: 20px 0; 
+            color: #888; 
+            font-family: var(--font-body); 
+            font-size: 1rem; 
+            line-height: 1.8; 
+        }
+        
+        .accreditation-container { 
+            margin-top: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 30px; 
+            flex-wrap: wrap; 
+        }
+        
+        .rics-wrapper { background-color: #ffffff; padding: 10px 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+
+        /* --- MOBILE ADJUSTMENTS --- */
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .btn { width: 100%; max-width: 300px; display: block; margin: 10px auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <span class="logo-as">As</span><span class="logo-plan">plan</span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Vision. Approved.</h1>
+        <h2>Website Under Construction</h2>
+        
+        <p>We are currently updating our online portfolio to showcase our latest planning successes and architectural projects.</p>
+        
+        <p>Our studio remains fully operational.</p>
+
+        <div class="cta-container">
+            <a href="mailto:Info@asplan.co.uk" class="btn">Email Us</a>
+            <a href="tel:07968585858" class="btn">Call 07968 585858</a>
+        </div>
+    </header>
+
+    <footer>
+        <div class="footer-address">
+            <p><strong>Asplan Associates</strong></p>
+            <p>Unit 6 The Axium Centre, Dorchester Road</p>
+            <p>Lytchett Minster, Poole, Dorset BH16 6FE</p>
+        </div>
+
+        <div class="accreditation-container">
+            <div class="rics-wrapper">
+                <img src="rics-logo.png" alt="RICS" style="height: 40px; width: auto; filter: brightness(0) invert(1);">
+            </div>
+            <div>
+                <img src="cabe-logo.png" alt="CABE" style="height: 50px; width: auto; filter: brightness(0) invert(1);">
+            </div>
+        </div>
+        
+        <p style="margin-top:30px; font-size: 0.7rem; color: #444;">© 2026 Asplan Associates. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
