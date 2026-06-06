@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regularisation Surveyors | Resolve Unauthorised Building Works</title>
-    <link rel="stylesheet" href="style.css?v=2.6">
+    <link rel="stylesheet" href="style.css?v=3.1">
 </head>
 <body>
 
@@ -15,8 +15,9 @@
                 <ul>
                     <li><a href="#problems">How We Help</a></li>
                     <li><a href="#triage-form">Eligibility</a></li>
-                    <!-- New Click-to-Call Link -->
-                    <li><a href="tel:" class="nav-phone"></a></li>
+                    <!-- Click-to-Call Link (Hidden until number is acquired)
+                    <li><a href="tel:00000000000" class="nav-phone">✆ 0000 000000</a></li>
+                    -->
                     <li><a href="#triage-form" class="btn-secondary">Free Consultation</a></li>
                 </ul>
             </nav>
@@ -229,6 +230,7 @@
                         <input type="hidden" name="urgency" id="hidden-urgency" value="">
                         
                         <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 12px; margin-bottom: 10px; background: #222; border: 1px solid #444; color: #fff;">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required style="width: 100%; padding: 12px; margin-bottom: 10px; background: #222; border: 1px solid #444; color: #fff;">
                         <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 12px; margin-bottom: 15px; background: #222; border: 1px solid #444; color: #fff;">
                         <button type="submit" class="btn-primary" style="width: 100%;">Request Call Back</button>
                     </form>
@@ -274,12 +276,29 @@
         </div>
     </section>
 
-    <footer class="site-footer">
+<footer class="site-footer">
         <div class="container footer-content">
             <div class="footer-brand">
                 <div class="logo">regularisation<span>.co.uk</span></div>
                 <p>Expert regularisation advice and building control applications.</p>
-                <!-- Accreditation Container -->
+            </div> <!-- Closes footer-brand -->
+
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div id="contact" class="footer-contact">
+                <h4>Contact</h4>
+                <p>Email: info@regularisation.co.uk</p>
+                <p>Based in Poole, serving the South Coast.</p>
+            </div>
+        </div> <!-- Closes container footer-content -->
+
+        <!-- MOVED ACCREDITATION CONTAINER HERE -->
         <div class="accreditation-container">
             <a href="https://www.rics.org" target="_blank" class="accred-btn">
                 <img src="rics-logo.png" alt="RICS Regulated">
@@ -288,27 +307,12 @@
                 <img src="cabe-logo.png" alt="CABE Chartered Association of Building Engineers">
             </a>
         </div>
-    </div> <!-- Closes footer-brand -->
 
-    <div class="footer-links">
-        <h4>Legal</h4>
-        <ul>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
-        </ul>
-    </div>
-    
-    <div id="contact" class="footer-contact">
-        <h4>Contact</h4>
-        <p>Email: info@regularisation.co.uk</p>
-        <p>Based in Poole, serving the South Coast.</p>
-    </div>
-</div>
-<div class="footer-bottom">
-    <p>&copy; 2026 regularisation.co.uk. All rights reserved.</p>
-</div>
-</footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 regularisation.co.uk. All rights reserved.</p>
+        </div>
+    </footer>
 
-<script src="script.js"></script>
+    <script src="script.js?v=1.2"></script>
 </body>
 </html>
